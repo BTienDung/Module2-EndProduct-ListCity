@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <center>
+        <div>
+            <div style="width: 400px; float:left;">
+                <table border="1" style="float: right">
+                    <tr>
+                        <td>
+                            <a th:href="@{/list-city}">List City</a>
+                        </td>
+                    </tr>
+                </table>
+                <h2>City <span th:text="${city.getName()}"></span></h2>
+                <table >
+                    <tr>
+                        <td>Name: <span th:text="${city.getName()}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Country: <span th:text="${city.country.getName()}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Square: <span th:text="${city.getSquare()}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>People: <span th:text="${city.getPeople()}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>GDP: <span th:text="${city.getGdp()}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p th:text="${city.getDescription()}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/edit/__${city.getId()}__}">Edit</a>
+                            <a th:href="@{/delete/__${city.getId()}__}">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

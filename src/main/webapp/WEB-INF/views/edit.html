@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>c</title>
+</head>
+<body>
+    <h2>Edit city <span th:text="${city.getName()}"></span></h2>
+<div th:if="${message}">
+    <p th:text="${message}" style="color: red"></p>
+</div>
+<form th:action="@{/edit-city}" method="post" th:object="${city}">
+    <table>
+        <tr>
+            <td>
+                <input type="hidden" th:field="*{id}">
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red">Name Error</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>
+                <select name="country">
+                    <option th:each="c:${country}" th:value="${c.id}" th:text="${c.name}" th:selected="(${c.id} == *{country.getId()})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Square</td>
+            <td><input type="text" th:field="*{square}"></td>
+            <td>
+                <span th:if="${#fields.hasErrors('square')}" th:errors="*{square}" style="color: red">Name Error</span>
+            </td>
+        </tr>
+        <tr>
+            <td>People</td>
+            <td>
+                <input type="text" th:field="*{people}">
+            </td>
+            <td>
+                <span th:if="${#fields.hasErrors('people')}" th:errors="*{people}" style="color: red">Name Error</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Gdp</td>
+            <td>
+                <input type="text" th:field="*{gdp}">
+            </td>
+            <td>
+                <span th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}" style="color: red">Name Error</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Desciption</td>
+            <td>
+                <textarea th:field="*{description}" cols="20" rows="5"></textarea>
+            </td>
+            <td>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red">Name Error</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Edit">
+                <a th:href="@{/list-city}">Exit</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

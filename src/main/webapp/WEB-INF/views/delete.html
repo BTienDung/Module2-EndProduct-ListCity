@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>c</title>
+</head>
+<body>
+<h2>Do you want to delete city: <span th:text="${city.getName()}"></span></h2>
+<div th:if="${message}">
+    <p th:text="${message}" style="color: red"></p>
+</div>
+<form th:action="@{/delete-city}" method="post" th:object="${city}">
+    <table >
+        <tr hidden>
+            <td>
+                <input type="hidden" th:field="*{id}">
+            </td>
+        </tr >
+        <tr hidden>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr hidden>
+            <td>Country</td>
+            <td>
+                <select name="country">
+                    <option th:each="c:${country}" th:value="${c.id}" th:text="${c.name}" th:selected="(${c.id} == *{country.getId()})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr hidden>
+            <td>Square</td>
+            <td><input type="text" th:field="*{square}"></td>
+        </tr>
+        <tr hidden>
+            <td>People</td>
+            <td>
+                <input type="text" th:field="*{people}">
+            </td>
+        </tr>
+        <tr hidden>
+            <td>Gdp</td>
+            <td>
+                <input type="text" th:field="*{gdp}">
+            </td>
+        </tr>
+        <tr hidden>
+            <td>Desciption</td>
+            <td>
+                <textarea th:field="*{description}" cols="20" rows="5"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Delete">
+                <a th:href="@{/list-city}">Exit</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
